@@ -46,10 +46,13 @@ MainWindow::~MainWindow()
 
 void MainWindow::initComboBoxItem()
 {
-    comboBox->addItem("申通");
-    comboBox->addItem("顺丰");
-    comboBox->addItem("圆通");
-    comboBox->addItem("中通");
+    comboBox->addItem("申通快递");
+    comboBox->addItem("顺丰快递");
+    comboBox->addItem("圆通快递");
+    comboBox->addItem("中通快递");
+    comboBox->addItem("EMS快递");
+    comboBox->addItem("韵达快递");
+    comboBox->addItem("天天快递");
 }
 
 void MainWindow::query()
@@ -74,6 +77,15 @@ void MainWindow::query()
         break;
     case 3:
         type = "zhongtong";
+        break;
+    case 4:
+        type = "ems";
+        break;
+    case 5:
+        type = "yunda";
+        break;
+    case 6:
+        type = "tiantian";
         break;
     }
     request.setUrl(QString("http://api.kuaidi100.com/api?id=29833628d495d7a5&com=yuantong&nu=710385758144&show=0&muti=1&order=desc").arg(type).arg(numberEdit->text()));
