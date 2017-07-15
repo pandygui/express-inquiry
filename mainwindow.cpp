@@ -36,6 +36,7 @@ MainWindow::MainWindow(QWidget *parent)
     initComboBoxItem();
 
     connect(http, &QNetworkAccessManager::finished, this, &MainWindow::replyFinished);
+    connect(numberEdit, &QLineEdit::returnPressed, this, &MainWindow::query);
     connect(searchButton, &QPushButton::clicked, this, &MainWindow::query);
 }
 
