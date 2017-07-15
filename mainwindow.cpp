@@ -88,7 +88,7 @@ void MainWindow::query()
         type = "tiantian";
         break;
     }
-    request.setUrl(QString("http://api.kuaidi100.com/api?id=29833628d495d7a5&com=yuantong&nu=710385758144&show=0&muti=1&order=desc").arg(type).arg(numberEdit->text()));
+    request.setUrl(QString("http://api.kuaidi100.com/api?id=29833628d495d7a5&com=%1&nu=%2&show=0&muti=1&order=desc").arg(type).arg(numberEdit->text()));
     http->get(request);
 }
 
@@ -100,16 +100,16 @@ void MainWindow::replyFinished(QNetworkReply *reply)
     QString allContent = "";
 
     if (value != 1) {
-        return;
-    }
+        allContent.append("：( 该单号暂无物流进展，请稍后再试，或检查公司和单号是否有误。");
+    }else {
+        QJsonArray array = data.value("data").toArray();
 
-    QJsonArray array = data.value("data").toArray();
-
-    for (int i=0; i<array.size(); ++i) {
-        allContent.append(array.at(i).toObject().value("time").toString());
-        allContent.append("\n");
-        allContent.append(array.at(i).toObject().value("context").toString());
-        allContent.append("\n\n");
+        for (int i=0; i<array.size(); ++i) {
+            allContent.append(array.at(i).toObject().value("time").toString());
+            allContent.append("\n");
+            allContent.append(array.at(i).toObject().value("context").toString());
+            allContent.append("\n\n");
+        }
     }
 
     contentBox->setPlainText(allContent);
