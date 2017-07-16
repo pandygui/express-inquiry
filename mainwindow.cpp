@@ -19,6 +19,8 @@ MainWindow::MainWindow(QWidget *parent)
     searchButton = new QPushButton("查询");
     contentBox = new QPlainTextEdit;
 
+    contentBox->setWordWrapMode(QTextOption::WrapAnywhere);
+
     contentBox->setReadOnly(true);
 
     topLayout->addWidget(comboBox);
