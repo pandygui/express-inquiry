@@ -63,6 +63,8 @@ void MainWindow::query()
     if (numberEdit->text().isEmpty())
         return;
 
+    contentBox->setPlainText("查询中，请稍候...");
+
     QNetworkRequest request;
     QString type;
 
